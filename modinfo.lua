@@ -1,7 +1,7 @@
 name = "Large Chest"
-description = "Craft the Large Chest, or the Large Icebox. Or both!"
-author = "lishid"
-version = "1.1.1"
+author = "lishid (original), myxal (extensions)"
+version = "1.2"
+description = "v"..version.."\nCraft the Large Chest, or the Large Icebox. Or both!"
 
 forumthread = ""
 
