@@ -1,0 +1,21 @@
+[Server/Host mod]
+Craft the Large Chest, or the Large Icebox. Or both!
+
+Features:
+- Large chest uses the "Ornate Chest" textures from Don't Starve, complete with animation. Thanks Klei!
+- Large icebox uses the original icebox texture, scaled to 150%.
+- 5x5 slots for both
+- Recipe scaled to regular chest and icebox
+	- chest = 3 boards -> 9 slots, large chest = 8 boards -> 25 slots, gold for balancing and decoration
+	- icebox = 1 gear -> 9 slots, large chest = 3 gears -> 25 slots, other requirements are scaled accordingly
+
+Large Chest (Structure tab):
+- Easy [Boards(6)] + Science Machine
+- Normal [Boards(8), Gold Nugget(2)] + Alchemy Engine
+- Hard [Boards(8), Gold Nugget(4)] + Alchemy Engine
+Large Icebox (Food tab):
+- Easy [Boards(2), Gears(2), Gold Nugget(4)] + Alchemy Engine
+- Normal [Boards(3), Gears(3), Gold Nugget(6)] + Alchemy Engine
+- Hard [Boards(4), Gears(3), Gold Nugget(8)] + Alchemy Engine
+
+WARNING: Easy mode may un-balance the game! (Depending on your opinion)
