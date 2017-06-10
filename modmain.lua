@@ -10,13 +10,13 @@ local Vector3 = GLOBAL.Vector3
 local ACTIONS = GLOBAL.ACTIONS
 local TheNet = GLOBAL.TheNet
 
-PrefabFiles = 
+PrefabFiles =
 {
     "largechest",
     "largeicebox",
 }
 
-Assets = 
+Assets =
 {
     Asset("ATLAS", "images/inventoryimages/largechest.xml"),
     Asset("IMAGE", "images/inventoryimages/largechest.tex"),
@@ -96,7 +96,18 @@ end
 
 --------------------------------------------------------------------------
 
-GLOBAL.LARGECHEST_OPT_DIFFICULTY = GetModConfigData("OPT_DIFFICULTY")
+local recipe_difficulty = GetModConfigData("OPT_DIFFICULTY")
+local icebox_ingredients =
+  (recipe_difficulty == 2) and { Ingredient("goldnugget", 8), Ingredient("gears", 3), Ingredient("boards", 4) } or
+  (recipe_difficulty == 1) and { Ingredient("goldnugget", 6), Ingredient("gears", 3), Ingredient("boards", 3) } or
+  (recipe_difficulty == 0) and { Ingredient("goldnugget", 4), Ingredient("gears", 2), Ingredient("boards", 2) } or
+  print "ERROR: unsupported recipe difficulty" and nil
+
+local chest_ingredients =
+  (recipe_difficulty == 2) and { Ingredient("boards", 8), Ingredient("goldnugget", 4) } or
+  (recipe_difficulty == 1) and { Ingredient("boards", 8), Ingredient("goldnugget", 2) } or
+  (recipe_difficulty == 0) and { Ingredient("boards", 6) } or
+  print "ERROR: unsupported recipe difficulty" and nil
 
 local function largechest_recipe(ingredients, level)
     AddRecipe("largechest", ingredients, RECIPETABS.TOWN, level, "largechest_placer",
@@ -107,19 +118,11 @@ local function largeicebox_recipe(ingredients, level)
         2.5, nil, nil, nil, nil, "icebox.tex")
 end
 
-if GLOBAL.LARGECHEST_OPT_DIFFICULTY == 2 then
-    largechest_recipe({ Ingredient("boards", 8), Ingredient("goldnugget", 4) }, TECH.SCIENCE_TWO)
-elseif GLOBAL.LARGECHEST_OPT_DIFFICULTY == 1 then
-    largechest_recipe({ Ingredient("boards", 8), Ingredient("goldnugget", 2) }, TECH.SCIENCE_ONE)
-else
-    largechest_recipe({ Ingredient("boards", 6) }, TECH.SCIENCE_ONE)
+if GetModConfigData("ICEBOX_ENABLE") then
+  largeicebox_recipe(icebox_ingredients, TECH.SCIENCE_TWO)
 end
-if GLOBAL.LARGECHEST_OPT_DIFFICULTY == 2 then
-    largeicebox_recipe({ Ingredient("goldnugget", 8), Ingredient("gears", 3), Ingredient("boards", 4) }, TECH.SCIENCE_TWO)
-elseif GLOBAL.LARGECHEST_OPT_DIFFICULTY == 1 then
-    largeicebox_recipe({ Ingredient("goldnugget", 6), Ingredient("gears", 3), Ingredient("boards", 3) }, TECH.SCIENCE_TWO)
-else
-    largeicebox_recipe({ Ingredient("goldnugget", 4), Ingredient("gears", 2), Ingredient("boards", 2) }, TECH.SCIENCE_TWO)
+if GetModConfigData("CHEST_ENABLE") then
+  largechest_recipe(chest_ingredients, TECH.SCIENCE_TWO)
 end
 
 STRINGS.NAMES.LARGECHEST = "Large Chest"

@@ -29,4 +29,22 @@ configuration_options =
 					},
 		default = 1,
 	},
+	{
+		name = "ICEBOX_ENABLE",
+		label = "Enable Icebox recipe",
+		options = {
+			{description = "No", data = false},
+			{description = "Yes", data = true}
+		},
+		default = true
+	},
+	{
+		name = "CHEST_ENABLE",
+		label = "Enable Chest recipe",
+		options = {
+			{description = "No", data = false},
+			{description = "Yes", data = true}
+		},
+		default = true
+	},
 }
