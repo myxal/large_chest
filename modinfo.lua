@@ -47,4 +47,24 @@ configuration_options =
 		},
 		default = true
 	},
+	-- {
+	-- 	name = "ICEBOX_SCALE",
+	-- 	label = "Visual size of icebox",
+	-- 	hover = "How large should the large icebox appear in the world",
+	-- 	options = {
+	-- 		{description = "Small", data = 1},
+	-- 		{description = "Large", data = 2}
+	-- 	}
+	-- 	default = 2
+	-- },
+	{
+		name = "CHEST_SCALE",
+		label = "Visual size of chest",
+		-- hover = "How large should the large chest appear in the world",
+		options = {
+			{description = "Small", data = 1},
+			{description = "Large", data = 2}
+		},
+		default = 2,
+	}
 }

@@ -1,10 +1,12 @@
 -- Source modified from prefabs/treasurechest.lua
 
 require "prefabutil"
-
+local modname = KnownModIndex:GetModActualName("Large Chest")
+local chest_scale = GetModConfigData("CHEST_SCALE", modname)
 local assets =
 {
     Asset("ANIM", "anim/pandoras_chest_large.zip"),
+    Asset("ANIM", "anim/pandoras_chest.zip"),
 }
 
 local function onopen(inst)
@@ -77,8 +79,15 @@ local function fn()
 
     inst:AddTag("structure")
     inst:AddTag("chest")
-    inst.AnimState:SetBank("pandoras_chest_large")
-    inst.AnimState:SetBuild("pandoras_chest_large")
+    if chest_scale == 1 then
+      inst.AnimState:SetBank("pandoras_chest")
+      inst.AnimState:SetBuild("pandoras_chest")
+    elseif chest_scale == 2 then
+      inst.AnimState:SetBank("pandoras_chest_large")
+      inst.AnimState:SetBuild("pandoras_chest_large")
+    else
+      print("ERROR: Unsupported chest scale, anim build not set")
+    end
     inst.AnimState:PlayAnimation("closed")
 
     MakeSnowCoveredPristine(inst)
@@ -115,6 +124,13 @@ local function fn()
 
     return inst
 end
+local placer
+if chest_scale == 1 then
+  placer = MakePlacer("common/largechest_placer", "pandoras_chest", "pandoras_chest", "closed")
+elseif chest_scale == 2 then
+  placer = MakePlacer("common/largechest_placer", "pandoras_chest_large", "pandoras_chest_large", "closed")
+else
+  print("ERROR: Unsupported chest scale, placer missing!")
+end
 
-return Prefab("common/largechest", fn, assets),
-        MakePlacer("common/largechest_placer", "pandoras_chest_large", "pandoras_chest_large", "closed")
+return Prefab("common/largechest", fn, assets), placer
