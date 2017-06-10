@@ -7,19 +7,19 @@ local assets =
     Asset("ANIM", "anim/pandoras_chest_large.zip"),
 }
 
-local function onopen(inst) 
+local function onopen(inst)
     if not inst:HasTag("burnt") then
         inst.AnimState:PlayAnimation("open")
         inst.SoundEmitter:PlaySound("dontstarve/wilson/chest_open")
     end
-end 
+end
 
-local function onclose(inst) 
+local function onclose(inst)
     if not inst:HasTag("burnt") then
         inst.AnimState:PlayAnimation("close")
         inst.SoundEmitter:PlaySound("dontstarve/wilson/chest_close")
-    end    
-end 
+    end
+end
 
 local function onhammered(inst, worker)
     if inst.components.burnable ~= nil and inst.components.burnable:IsBurning() then
@@ -73,7 +73,7 @@ local function fn()
     inst.entity:AddMiniMapEntity()
     inst.entity:AddNetwork()
 
-    inst.MiniMapEntity:SetIcon("minotaur_chest.png")
+    inst.MiniMapEntity:SetIcon("minotaurchest.png")
 
     inst:AddTag("structure")
     inst:AddTag("chest")
@@ -100,22 +100,21 @@ local function fn()
     inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
     inst.components.workable:SetWorkLeft(2)
     inst.components.workable:SetOnFinishCallback(onhammered)
-    inst.components.workable:SetOnWorkCallback(onhit) 
+    inst.components.workable:SetOnWorkCallback(onhit)
 
     AddHauntableDropItemOrWork(inst)
 
     inst:ListenForEvent("onbuilt", onbuilt)
-    MakeSnowCovered(inst)   
+    MakeSnowCovered(inst)
 
     MakeSmallBurnable(inst, nil, nil, true)
     MakeMediumPropagator(inst)
 
-    inst.OnSave = onsave 
+    inst.OnSave = onsave
     inst.OnLoad = onload
-    
+
     return inst
 end
 
 return Prefab("common/largechest", fn, assets),
         MakePlacer("common/largechest_placer", "pandoras_chest_large", "pandoras_chest_large", "closed")
-        
