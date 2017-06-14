@@ -1,7 +1,7 @@
 -- Source modified from prefabs/treasurechest.lua
 
 require "prefabutil"
-local modname = KnownModIndex:GetModActualName("Large Chest")
+local modname = KnownModIndex:GetModActualName("Large Chest fixed")
 local chest_scale = GetModConfigData("CHEST_SCALE", modname)
 local assets =
 {
