@@ -7,6 +7,7 @@ local assets =
 {
     Asset("ANIM", "anim/pandoras_chest_large.zip"),
     Asset("ANIM", "anim/pandoras_chest.zip"),
+    Asset("ANIM", "anim/treasure_chest.zip"),
 }
 
 local function onopen(inst)
@@ -66,6 +67,15 @@ local function onload(inst, data)
     end
 end
 
+local onburnt_old
+local function onburnt_new(inst)
+    inst.AnimState:SetBank("chest")
+    inst.AnimState:SetBuild("treasure_chest")
+    local animscale = 0.8 + ( chest_scale * 0.4 )
+    inst.AnimState:SetScale(animscale, animscale)
+    onburnt_old(inst)
+end
+
 local function fn()
     local inst = CreateEntity()
 
@@ -115,10 +125,10 @@ local function fn()
 
     inst:ListenForEvent("onbuilt", onbuilt)
     MakeSnowCovered(inst)
-
     MakeSmallBurnable(inst, nil, nil, true)
     MakeMediumPropagator(inst)
-
+    onburnt_old = inst.components.burnable.onburnt
+    inst.components.burnable:SetOnBurntFn(onburnt_new)
     inst.OnSave = onsave
     inst.OnLoad = onload
 
