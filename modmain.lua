@@ -109,9 +109,10 @@ local chest_ingredients =
   (recipe_difficulty == 0) and { Ingredient("boards", 6) } or
   print "ERROR: unsupported recipe difficulty" and nil
 
+local chest_scale = GetModConfigData("CHEST_SCALE")
 local function largechest_recipe(ingredients, level)
     AddRecipe("largechest", ingredients, RECIPETABS.TOWN, level, "largechest_placer",
-        nil, nil, nil, nil, "images/inventoryimages/largechest.xml")
+        (chest_scale * 1.2 + 0.4), nil, nil, nil, "images/inventoryimages/largechest.xml")
 end
 local function largeicebox_recipe(ingredients, level)
     AddRecipe("largeicebox", ingredients, RECIPETABS.FARM, level, "largeicebox_placer",

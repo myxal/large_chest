@@ -1,6 +1,6 @@
 name = "Large Chest fixed"
 author = "lishid (original), myxal (extensions)"
-version = "1.3"
+version = "1.4"
 description = "v"..version.."\nCraft the Large Chest, or the Large Icebox. Or both!"
 
 forumthread = ""
