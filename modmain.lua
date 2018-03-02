@@ -111,12 +111,18 @@ local chest_ingredients =
 
 local chest_scale = GetModConfigData("CHEST_SCALE")
 local function largechest_recipe(ingredients, level)
-    AddRecipe("largechest", ingredients, RECIPETABS.TOWN, level, "largechest_placer",
+    local rec = AddRecipe("largechest", ingredients, RECIPETABS.TOWN, level, "largechest_placer",
         (chest_scale * 1.2 + 0.4), nil, nil, nil, "images/inventoryimages/largechest.xml")
+    if GLOBAL.AllRecipes.treasurechest ~= nil then
+      rec.sortkey = GLOBAL.AllRecipes.treasurechest.sortkey + 0.1
+    end
 end
 local function largeicebox_recipe(ingredients, level)
-    AddRecipe("largeicebox", ingredients, RECIPETABS.FARM, level, "largeicebox_placer",
+    local rec = AddRecipe("largeicebox", ingredients, RECIPETABS.FARM, level, "largeicebox_placer",
         2.5, nil, nil, nil, nil, "icebox.tex")
+    if GLOBAL.AllRecipes.icebox ~= nil then
+      rec.sortkey = GLOBAL.AllRecipes.icebox.sortkey + 0.1
+    end
 end
 
 if GetModConfigData("ICEBOX_ENABLE") then
