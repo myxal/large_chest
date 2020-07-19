@@ -1,7 +1,12 @@
 name = "Large Chest fixed"
-author = "lishid (original), myxal (extensions)"
-version = "1.5"
-description = "v"..version.."\nCraft the Large Chest, or the Large Icebox. Or both!"
+author = "myxal"
+version = "2.0"
+description = "v"..version.."\nAdds larger variants of Chest, Icebox, Saltbox. Recipes can be individually disabled in Configuration."
+
+folder_name = folder_name or "large chest"
+if not folder_name:find("workshop-") then
+    name = "(DEV)"..name
+end
 
 forumthread = ""
 
@@ -47,16 +52,15 @@ configuration_options =
 		},
 		default = true
 	},
-	-- {
-	-- 	name = "ICEBOX_SCALE",
-	-- 	label = "Visual size of icebox",
-	-- 	hover = "How large should the large icebox appear in the world",
-	-- 	options = {
-	-- 		{description = "Small", data = 1},
-	-- 		{description = "Large", data = 2}
-	-- 	}
-	-- 	default = 2
-	-- },
+	{
+		name = "SALTBOX_ENABLE",
+		label = "Enable Saltbox recipe",
+		options = {
+			{description = "No", data = false},
+			{description = "Yes", data = true}
+		},
+		default = true
+	},
 	{
 		name = "CHEST_SCALE",
 		label = "Visual size of chest",
