@@ -7,9 +7,7 @@ local assets =
 
 local function fn()
   local inst = Prefabs.icebox.fn()
-  inst.AnimState:SetScale(scale, scale)
-  MakeSnowCoveredPristine(inst)
-  inst.entity:SetPristine()
+  inst.AnimState:SetScale(scale, scale)  
   if not TheWorld.ismastersim then
       return inst
   end

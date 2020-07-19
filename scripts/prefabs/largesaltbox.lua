@@ -14,8 +14,6 @@ local prefabs =
 local function fn()
   local inst = Prefabs.saltbox.fn()
   inst.AnimState:SetScale(scale, scale)
-  MakeSnowCoveredPristine(inst)
-  inst.entity:SetPristine()
   if not TheWorld.ismastersim then
       return inst
   end

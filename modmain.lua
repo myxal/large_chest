@@ -160,9 +160,9 @@ if GetModConfigData("SALTBOX_ENABLE") then
   		or item:HasTag("saltbox_valid")
   end
   local ingredients =
-    (recipe_difficulty == 2) and { Ingredient("saltrock", 28), Ingredient("cutstone", 4), Ingredient("bluegem",4) } or
-    (recipe_difficulty == 1) and { Ingredient("saltrock", 24), Ingredient("cutstone", 3), Ingredient("bluegem",3) } or
-    (recipe_difficulty == 0) and { Ingredient("saltrock", 16), Ingredient("cutstone", 2), Ingredient("bluegem",2) } or
+    (recipe_difficulty == 2) and { Ingredient("saltrock", 28), Ingredient("bluegem",4), Ingredient("cutstone", 4) } or
+    (recipe_difficulty == 1) and { Ingredient("saltrock", 24), Ingredient("bluegem",3), Ingredient("cutstone", 3) } or
+    (recipe_difficulty == 0) and { Ingredient("saltrock", 16), Ingredient("bluegem",2), Ingredient("cutstone", 2) } or
     print "ERROR: unsupported recipe difficulty" and nil
   local rec = AddRecipe(
       "largesaltbox",
